@@ -38,13 +38,20 @@ jobs:
   deployment: 
     name: CD-via-ansible
     needs: code-validation
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps: 
       - name: checkout-repo 
         uses: actions/checkout@v4
 
-      
+      - name: installation
+        run: |
+          sudo apt update
+          sudo apt install software-properties-common
+          sudo add-apt-repository --yes --update ppa:ansible/ansible
+          sudo apt install ansible -y
+
+          
       - name: run-ansible
         run: |
           ansible-playbook -i inventory.ini playbook.yml
