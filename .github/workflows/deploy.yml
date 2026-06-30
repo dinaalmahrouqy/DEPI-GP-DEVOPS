@@ -38,7 +38,7 @@ jobs:
   deployment: 
     name: CD-via-ansible
     needs: code-validation
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps: 
       - name: checkout-repo 
